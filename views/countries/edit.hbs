@@ -1,0 +1,44 @@
+<h1>{{title}}</h1>
+
+{{!-- 
+    HTTP Verbs:
+    GET, POST, PUT, DELETE
+ --}}
+
+{{!-- Form to capture data --}}
+<form method="POST">
+    <fieldset>
+        <label for="countryName" class="col-2">Country Name:</label>
+        <input name="countryName" id="countryName" required value="{{country.countryName}}">
+    </fieldset>
+    <fieldset>
+        <label for="gold" class="col-2">Gold Medals:</label>
+        <input name="gold" id="gold" required value="{{country.gold}}">
+    </fieldset>
+    <fieldset>
+        <label for="silver" class="col-2">Silver Medals:</label>
+        <input name="silver" id="silver" required value="{{country.silver}}">
+    </fieldset>
+    <fieldset>
+        <label for="bronze" class="col-2">Bronze Medals:</label>
+        <input name="bronze" id="bronze" required value="{{country.bronze}}">
+    </fieldset>
+    <fieldset>
+        <label for="eventName" class="col-2">Event Name:</label>
+        <select name="eventName" id="eventName">
+            {{#each events}}
+                {{createOption this.eventName ../country.event }}
+            {{/each}} 
+        </select>
+    </fieldset>
+    <fieldset>
+        <label for="eventStatus" class="col-2">Event Status:</label>
+        <select name="eventStatus" id="eventStatus">
+            {{createOption 'On Going' ../country.eventStatus}}
+            {{createOption 'Completed' ../country.eventStatus}}
+        </select>
+    </fieldset>
+    {{!-- button to send that data to the server --}}
+    <button class="offset-3 btn btn-primary">Save</button>
+</form>
+
